@@ -1,0 +1,114 @@
+@font-face {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/stratosskyengweb-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/stratosskyengweb-medium.woff2") format("woff2");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  background: #004980;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.difficulty {
+  background: #c2f5ff;
+  padding: 52px 69px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+}
+.difficulty__text {
+  width: 208px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  color: #004980;
+}
+.difficulty__value-wrap {
+  margin-top: 48px;
+  display: flex;
+  gap: 26px;
+}
+.difficulty__value {
+  padding: 13px 33px;
+  background: #ffffff;
+  border-radius: 12px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #0080c1;
+  cursor: pointer;
+  transition: scale 0.3s;
+}
+.difficulty__value:hover {
+  scale: 1.1;
+}
+.difficulty__start {
+  width: 246px;
+  height: 50px;
+  margin-top: 68px;
+  background: #7ac100;
+  border: none;
+  border-radius: 12px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.difficulty__start:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 499px) {
+  .difficulty {
+    padding: 30px;
+  }
+  .difficulty__text {
+    font-size: 32px;
+  }
+  .difficulty__value-wrap {
+    gap: 10px;
+  }
+  .difficulty__value {
+    padding: 5px 30px;
+    font-size: 40px;
+  }
+}
+@media (max-width: 499px) {
+  .difficulty {
+    padding: 30px 16px;
+  }
+}/*# sourceMappingURL=index.css.map */

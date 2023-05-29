@@ -1,0 +1,62 @@
+.difficulty {
+  background: #c2f5ff;
+  padding: 52px 69px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  &__text {
+    width: 208px;
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    color: #004980;
+  }
+  &__value-wrap {
+    margin-top: 48px;
+    display: flex;
+    gap: 26px;
+  }
+  &__value {
+    padding: 13px 33px;
+    background: #ffffff;
+    border-radius: 12px;
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0080c1;
+    cursor: pointer;
+
+    transition: scale .3s;
+    &:hover {
+        scale: 1.1;
+    }
+  }
+  &__start {
+    width: 246px;
+    height: 50px;
+    margin-top: 68px;
+    background: #7ac100;
+    border: none;
+    border-radius: 12px;
+
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #ffffff;
+    cursor: pointer;
+    &:hover {
+        opacity: .7;
+    }
+  }
+}
