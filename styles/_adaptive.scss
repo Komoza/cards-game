@@ -1,0 +1,26 @@
+//tablet
+@media (max-width: 499px) {
+    //difficulty
+    .difficulty {
+        padding: 30px;
+        &__text {
+            font-size: 32px;
+        }
+        &__value-wrap {
+            gap: 10px;
+        }
+        &__value {
+            padding: 5px 30px;
+            font-size: 40px;
+        }
+    }
+}
+
+
+//mobile
+@media (max-width: 499px) {
+    //difficulty
+    .difficulty {
+        padding: 30px 16px;
+    }
+}
