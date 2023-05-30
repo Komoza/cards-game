@@ -38,6 +38,7 @@ li {
   flex-direction: column;
   align-items: center;
   border-radius: 12px;
+  gap: 48px;
 }
 .difficulty__text {
   width: 208px;
@@ -49,34 +50,45 @@ li {
   text-align: center;
   color: #004980;
 }
+.difficulty__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 68px;
+}
 .difficulty__value-wrap {
-  margin-top: 48px;
   display: flex;
   gap: 26px;
 }
 .difficulty__value {
-  padding: 13px 33px;
-  background: #ffffff;
-  border-radius: 12px;
   font-family: "StratosSkyeng";
+  border: none;
   font-style: normal;
   font-weight: 400;
   font-size: 64px;
   line-height: 72px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   color: #0080c1;
   cursor: pointer;
-  transition: scale 0.3s;
+  transition: transform 0.3s;
+}
+.difficulty__value input[type=radio] {
+  display: none;
+}
+.difficulty__value span {
+  padding: 13px 33px;
+  background: #ffffff;
+  border-radius: 12px;
+}
+.difficulty__value input[type=radio]:checked + span {
+  border: 3px solid #004980;
+  border-radius: 12px;
 }
 .difficulty__value:hover {
-  scale: 1.1;
+  transform: scale(1.1);
 }
 .difficulty__start {
   width: 246px;
   height: 50px;
-  margin-top: 68px;
   background: #7ac100;
   border: none;
   border-radius: 12px;
