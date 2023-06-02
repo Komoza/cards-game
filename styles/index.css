@@ -61,8 +61,11 @@ li {
   gap: 26px;
 }
 .difficulty__value {
+  padding: 13px 33px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #fff;
   font-family: "StratosSkyeng";
-  border: none;
   font-style: normal;
   font-weight: 400;
   font-size: 64px;
@@ -74,17 +77,11 @@ li {
 .difficulty__value input[type=radio] {
   display: none;
 }
-.difficulty__value span {
-  padding: 13px 33px;
-  background: #ffffff;
-  border-radius: 12px;
-}
-.difficulty__value input[type=radio]:checked + span {
-  border: 3px solid #004980;
-  border-radius: 12px;
-}
 .difficulty__value:hover {
   transform: scale(1.1);
+}
+.difficulty__value--active {
+  border: 2px solid #004980;
 }
 .difficulty__start {
   width: 246px;

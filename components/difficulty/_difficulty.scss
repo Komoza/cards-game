@@ -27,8 +27,11 @@
     gap: 26px;
   }
   &__value {
+    padding: 13px 33px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 2px solid #fff;
     font-family: "StratosSkyeng";
-    border: none;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
@@ -40,19 +43,13 @@
     & input[type="radio"] {
       display: none;
     }
-    & span {
-      padding: 13px 33px;
-      background: #ffffff;
-      border-radius: 12px;
-    }
-
-    & input[type="radio"]:checked + span {
-      border: 3px solid #004980;
-      border-radius: 12px;
-    }
 
     &:hover {
       transform: scale(1.1);
+    }
+
+    &--active {
+      border: 2px solid #004980;
     }
   }
   &__start {
