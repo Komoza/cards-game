@@ -1,9 +1,9 @@
-import { goToPage } from "../../index.js";
+import { goToPage } from '../../index.js';
 
-export let difficulty = 0;
+export let difficulty = 1;
 
 export const DifficultyPage = (app) => {
-  app.innerHTML += `
+    app.innerHTML = `
   <div class="container">
     <div class="difficulty">
       <h2 class="difficulty__text">Выбери сложность</h2>
@@ -28,36 +28,36 @@ export const DifficultyPage = (app) => {
   </div>
 `;
 
-  // Перехватываем событие отправки формы
-  document
-    .querySelector(".difficulty__form")
-    .addEventListener("submit", (event) => {
-      // Отменяем стандартное поведение формы
-      event.preventDefault();
+    // Перехватываем событие отправки формы
+    document
+        .querySelector('.difficulty__form')
+        .addEventListener('submit', (event) => {
+            // Отменяем стандартное поведение формы
+            event.preventDefault();
 
-      const radioButtons = document.querySelectorAll(
-        '.difficulty__value input[type="radio"]'
-      );
-      for (let radioButton of radioButtons) {
-        if (radioButton.checked) {
-          difficulty = radioButton.value;
-          goToPage("Game");
-          break;
-        }
-      }
-      if (!difficulty) {
-        console.log("выберите сложность");
-      }
-    });
+            const radioButtons = document.querySelectorAll(
+                '.difficulty__value input[type="radio"]'
+            );
+            for (let radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    difficulty = radioButton.value;
+                    goToPage('Game');
+                    break;
+                }
+            }
+            if (!difficulty) {
+                console.log('выберите сложность');
+            }
+        });
 
-  // Рисуем видимость выбраного компонента
-  const difValues = document.querySelectorAll(".difficulty__value");
-  difValues.forEach((difValue) => {
-    difValue.addEventListener("click", () => {
-      document
-        .querySelector(".difficulty__value--active")
-        ?.classList.remove("difficulty__value--active");
-      difValue.classList.add("difficulty__value--active");
+    // Рисуем видимость выбраного компонента
+    const difValues = document.querySelectorAll('.difficulty__value');
+    difValues.forEach((difValue) => {
+        difValue.addEventListener('click', () => {
+            document
+                .querySelector('.difficulty__value--active')
+                ?.classList.remove('difficulty__value--active');
+            difValue.classList.add('difficulty__value--active');
+        });
     });
-  });
 };
