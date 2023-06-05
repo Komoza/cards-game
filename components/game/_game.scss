@@ -18,6 +18,10 @@
     font-size: 24px;
     line-height: 32px;
     color: #ffffff;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.7;
+    }
 }
 
 .timer {
@@ -51,5 +55,10 @@
     }
     &__card {
         border-radius: 4px;
+        transition: transform 0.3s;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 }
