@@ -1,8 +1,9 @@
 import { goToPage } from '../../index.js';
 
-export let difficulty = 1;
+export let difficulty = 0;
 
 export const DifficultyPage = (app) => {
+    difficulty = 0;
     app.innerHTML = `
   <div class="container">
     <div class="difficulty">
@@ -46,14 +47,16 @@ export const DifficultyPage = (app) => {
                 }
             }
             if (!difficulty) {
-                console.log('выберите сложность');
+                alert('выберите сложность');
             }
         });
 
     // Рисуем видимость выбраного компонента
     const difValues = document.querySelectorAll('.difficulty__value');
+    const startButton = document.querySelector('.difficulty__start');
     difValues.forEach((difValue) => {
         difValue.addEventListener('click', () => {
+          startButton.classList.add('new-game--active');
             document
                 .querySelector('.difficulty__value--active')
                 ?.classList.remove('difficulty__value--active');
