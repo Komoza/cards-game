@@ -2,16 +2,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 module.exports = {
     entry: './index.js',
     mode: isProduction ? 'production' : 'development',
-    // mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         clean: true,
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -34,6 +35,10 @@ module.exports = {
             template: './index.html',
         }),
         new MiniCssExtractPlugin(),
+
+        new CopyWebpackPlugin({
+            patterns: [{ from: 'assets/image/card', to: 'images' }],
+        }),
     ],
     optimization: {
         minimizer: ['...', new CssMinimizerPlugin()],
