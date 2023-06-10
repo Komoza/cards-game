@@ -1,5 +1,6 @@
 import { DifficultyPage } from './components/difficulty/difficulty-component.js';
 import { Game } from './components/game/game.js';
+import "./styles/index.css";
 
 const app = document.getElementById('root');
 let page = 'Difficulty';
