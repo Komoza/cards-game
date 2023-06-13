@@ -1,9 +1,14 @@
-import { goToPage } from '../../index.js';
-import { difficulty } from '../difficulty/difficulty-component.js';
-import { EndGame } from '../end-game/end-game.js';
+import { goToPage } from '../../index';
+import { difficulty } from '../difficulty/difficulty-component';
+import { EndGame } from '../end-game/end-game';
 
-let arrCards = [];
-const getSuit = (num) => {
+interface Card {
+    value: string | undefined;
+    nod: Element | null;
+}
+let arrCards: Array<string> = [];
+
+const getSuit = (num: number) => {
     switch (num) {
         case 1:
             return 'spades';
@@ -17,7 +22,7 @@ const getSuit = (num) => {
             return 'error';
     }
 };
-const getRank = (num) => {
+const getRank = (num: number) => {
     switch (num) {
         case 6:
             return 'six';
@@ -42,7 +47,9 @@ const getRank = (num) => {
     }
 };
 const checkTheWin = () => {
-    const cards = document.querySelectorAll('.game__card');
+    const cards: HTMLElement[] = Array.from(
+        document.querySelectorAll('.game__card')
+    );
     for (let card of cards) {
         if (card.dataset.status !== 'open') {
             return false;
@@ -50,14 +57,18 @@ const checkTheWin = () => {
     }
     return true;
 };
-const checkTheCuple = (firstOpenCard, secondOpenCard) => {
-    const min = document.querySelector('.timer__counter--min').innerHTML;
-    const sec = document.querySelector('.timer__counter--sec').innerHTML;
+const checkTheCuple = (firstOpenCard: Card, secondOpenCard: Card) => {
+    const min: string = document.querySelector(
+        '.timer__counter--min'
+    )!.innerHTML;
+    const sec: string = document.querySelector(
+        '.timer__counter--sec'
+    )!.innerHTML;
     if (firstOpenCard.value !== secondOpenCard.value) {
         EndGame(false, { min: min, sec: sec });
     } else {
-        firstOpenCard.nod.setAttribute('data-status', 'open');
-        secondOpenCard.nod.setAttribute('data-status', 'open');
+        firstOpenCard.nod?.setAttribute('data-status', 'open');
+        secondOpenCard.nod?.setAttribute('data-status', 'open');
 
         if (checkTheWin()) {
             EndGame(true, { min: min, sec: sec });
@@ -72,33 +83,33 @@ const checkTheCuple = (firstOpenCard, secondOpenCard) => {
 };
 
 const startGame = () => {
-    let firstOpenCard = {
+    let firstOpenCard: Card = {
         value: '',
         nod: null,
     };
-    let secondOpenCard = {
+    let secondOpenCard: Card = {
         value: '',
         nod: null,
     };
     // актвируем кнопку Начать заново
-    const newGame = document.querySelector('.new-game');
+    const newGame: HTMLElement = document.querySelector('.new-game')!;
     newGame.classList.add('new-game--active');
     newGame.addEventListener('click', () => {
         goToPage('Difficulty');
     });
 
     // запуск таймера
-    const min = document.querySelector('.timer__counter--min');
-    const sec = document.querySelector('.timer__counter--sec');
+    const min: HTMLElement = document.querySelector('.timer__counter--min')!;
+    const sec: HTMLElement = document.querySelector('.timer__counter--sec')!;
 
-    let second = '';
-    let minute = '';
+    let second: string = '';
+    let minute: string = '';
     setInterval(() => {
-        second = Number(sec.innerHTML) + 1;
-        if (second < 60) {
+        second = (Number(sec.innerHTML) + 1).toString();
+        if (Number(second) < 60) {
             sec.innerHTML = Number(second) < 10 ? '0' + second : second;
         } else {
-            minute = Number(min.innerHTML) + 1;
+            minute = (Number(min.innerHTML) + 1).toString();
             min.innerHTML = Number(minute) < 10 ? '0' + minute : minute;
             sec.innerHTML = '00';
         }
@@ -109,25 +120,26 @@ const startGame = () => {
     cards.forEach((card) => {
         card.addEventListener('click', () => {
             // проверка, чтобы ивент не отрабатывал на уже открытые карты
-            if (card.dataset.status !== 'open') {
-                card.setAttribute(
+            const htmlCard = card as HTMLElement;
+            if (htmlCard.dataset.status !== 'open') {
+                htmlCard.setAttribute(
                     'src',
-                    `./images/card/${card.dataset.value}.jpg`
+                    `./images/card/${htmlCard.dataset.value}.jpg`
                 );
                 // если первая карта открыта переворачиваем вторую и проверяем пара ли это
                 if (!firstOpenCard.value) {
-                    firstOpenCard.value = card.dataset.value;
-                    firstOpenCard.nod = card;
+                    firstOpenCard.value = htmlCard.dataset.value;
+                    firstOpenCard.nod = htmlCard;
                 } else {
-                    secondOpenCard.value = card.dataset.value;
-                    secondOpenCard.nod = card;
+                    secondOpenCard.value = htmlCard.dataset.value;
+                    secondOpenCard.nod = htmlCard;
                     checkTheCuple(firstOpenCard, secondOpenCard);
                 }
             }
         });
     });
 };
-const fillCardsArray = (numbers) => {
+const fillCardsArray = (numbers: number) => {
     // генерация карт
     let rank = '';
     let suit = '';
@@ -171,17 +183,17 @@ const fillCardsArray = (numbers) => {
     }, 5000);
 };
 
-export const Game = (app) => {
+export const Game = (app: HTMLElement) => {
     // опции сложности
     arrCards = [];
     switch (difficulty) {
-        case '1':
+        case 1:
             fillCardsArray(6);
             break;
-        case '2':
+        case 2:
             fillCardsArray(12);
             break;
-        case '3':
+        case 3:
             fillCardsArray(18);
             break;
         default:

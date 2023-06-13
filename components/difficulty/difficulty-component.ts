@@ -1,8 +1,8 @@
-import { goToPage } from '../../index.js';
+import { goToPage } from '../../index';
 
 export let difficulty = 0;
 
-export const DifficultyPage = (app) => {
+export const DifficultyPage = (app: HTMLElement) => {
     difficulty = 0;
     app.innerHTML = `
   <div class="container">
@@ -30,33 +30,32 @@ export const DifficultyPage = (app) => {
 `;
 
     // Перехватываем событие отправки формы
-    document
-        .querySelector('.difficulty__form')
-        .addEventListener('submit', (event) => {
-            // Отменяем стандартное поведение формы
-            event.preventDefault();
+    const formElement = document.querySelector(
+        '.difficulty__form'
+    ) as HTMLElement;
+    formElement.addEventListener('submit', (event) => {
+        // Отменяем стандартное поведение формы
+        event.preventDefault();
 
-            const radioButtons = document.querySelectorAll(
-                '.difficulty__value input[type="radio"]'
-            );
-            for (let radioButton of radioButtons) {
-                if (radioButton.checked) {
-                    difficulty = radioButton.value;
-                    goToPage('Game');
-                    break;
-                }
+        const radioButtons: HTMLInputElement[] = Array.from(document.querySelectorAll('.difficulty__value input[type="radio"]'));
+        for (let radioButton of radioButtons) {
+            if (radioButton.checked) {
+                difficulty = Number(radioButton.value);
+                goToPage('Game');
+                break;
             }
-            if (!difficulty) {
-                alert('выберите сложность');
-            }
-        });
+        }
+        if (!difficulty) {
+            alert('выберите сложность');
+        }
+    });
 
     // Рисуем видимость выбраного компонента
     const difValues = document.querySelectorAll('.difficulty__value');
     const startButton = document.querySelector('.difficulty__start');
     difValues.forEach((difValue) => {
         difValue.addEventListener('click', () => {
-          startButton.classList.add('new-game--active');
+            startButton?.classList.add('new-game--active');
             document
                 .querySelector('.difficulty__value--active')
                 ?.classList.remove('difficulty__value--active');

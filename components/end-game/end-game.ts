@@ -1,8 +1,13 @@
-import { goToPage } from '../../index.js';
+import { goToPage } from '../../index';
 
-const app = document.getElementById('root');
+const app: HTMLElement = document.getElementById('root')!;
 
-export const EndGame = (isWin, time) => {
+interface Time {
+    min: string;
+    sec: string
+}
+
+export const EndGame = (isWin: Boolean, time: Time ) => {
     app.innerHTML += `
         <div class="end">
             <div class="end__wrap">
@@ -18,7 +23,8 @@ export const EndGame = (isWin, time) => {
             </div>
         </div>
     `;
-    document.querySelector('.end__again').addEventListener('click', () => {
+    const againButton = document.querySelector('.end__again');
+    againButton?.addEventListener('click', () => {
         goToPage('Difficulty');
     });
 };
