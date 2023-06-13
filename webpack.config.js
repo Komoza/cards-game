@@ -34,10 +34,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html',
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'index.css',
+        }),
 
         new CopyWebpackPlugin({
-            patterns: [{ from: 'assets/image/card', to: 'images' }],
+            patterns: [{ from: 'assets/image', to: 'images' }],
         }),
     ],
     optimization: {

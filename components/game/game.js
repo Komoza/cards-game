@@ -1,5 +1,6 @@
 import { goToPage } from '../../index.js';
 import { difficulty } from '../difficulty/difficulty-component.js';
+import { EndGame } from '../end-game/end-game.js';
 
 let arrCards = [];
 const getSuit = (num) => {
@@ -50,16 +51,16 @@ const checkTheWin = () => {
     return true;
 };
 const checkTheCuple = (firstOpenCard, secondOpenCard) => {
+    const min = document.querySelector('.timer__counter--min').innerHTML;
+    const sec = document.querySelector('.timer__counter--sec').innerHTML;
     if (firstOpenCard.value !== secondOpenCard.value) {
-        alert('Вы проиграли');
-        goToPage('Difficulty');
+        EndGame(false, { min: min, sec: sec });
     } else {
         firstOpenCard.nod.setAttribute('data-status', 'open');
         secondOpenCard.nod.setAttribute('data-status', 'open');
 
         if (checkTheWin()) {
-            alert('Вы победили');
-            goToPage('Difficulty');
+            EndGame(true, { min: min, sec: sec });
         } else {
             firstOpenCard.value = '';
             firstOpenCard.nod = null;
@@ -109,7 +110,10 @@ const startGame = () => {
         card.addEventListener('click', () => {
             // проверка, чтобы ивент не отрабатывал на уже открытые карты
             if (card.dataset.status !== 'open') {
-                card.setAttribute('src', `./images/${card.dataset.value}.jpg`);
+                card.setAttribute(
+                    'src',
+                    `./images/card/${card.dataset.value}.jpg`
+                );
                 // если первая карта открыта переворачиваем вторую и проверяем пара ли это
                 if (!firstOpenCard.value) {
                     firstOpenCard.value = card.dataset.value;
@@ -134,11 +138,11 @@ const fillCardsArray = (numbers) => {
             suit = getSuit(Math.floor(Math.random() * 4) + 1);
         } while (
             arrCards.includes(
-                `<img data-value="${rank}-of-${suit}" class="game__card" src="./images/${rank}-of-${suit}.jpg" alt="card"/>`
+                `<img data-value="${rank}-of-${suit}" class="game__card" src="./images/card/${rank}-of-${suit}.jpg" alt="card"/>`
             )
         );
 
-        let card = `<img data-value="${rank}-of-${suit}" class="game__card" src="./images/${rank}-of-${suit}.jpg" alt="card"/>`;
+        let card = `<img data-value="${rank}-of-${suit}" class="game__card" src="./images/card/${rank}-of-${suit}.jpg" alt="card"/>`;
         arrCards.push(card);
 
         // добавляем пару
@@ -162,7 +166,7 @@ const fillCardsArray = (numbers) => {
     setTimeout(() => {
         const cards = document.querySelectorAll('.game__card');
         cards.forEach((card) => {
-            card.setAttribute('src', './images/dealer-shirt.jpg');
+            card.setAttribute('src', './images/card/dealer-shirt.jpg');
         });
     }, 5000);
 };
