@@ -6,16 +6,21 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 module.exports = {
-    entry: './index.js',
+    entry: './index.ts',
     mode: isProduction ? 'production' : 'development',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         clean: true,
-        publicPath: '/',
+        publicPath: '',
     },
     module: {
         rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
@@ -30,14 +35,21 @@ module.exports = {
             },
         ],
     },
+
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
+    
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'index.css',
+        }),
 
         new CopyWebpackPlugin({
-            patterns: [{ from: 'assets/image/card', to: 'images' }],
+            patterns: [{ from: 'assets/image', to: 'images' }],
         }),
     ],
     optimization: {
