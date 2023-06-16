@@ -1,5 +1,5 @@
 import { it, expect, describe } from '@jest/globals';
-import { getSuit, getRank, fillCardsArray } from './game';
+import { getSuit, getRank, fillCardsArray } from '../components/game/game';
 
 describe('getSuit', () => {
     it('should return "spades" when the input is 1', () => {
@@ -114,31 +114,31 @@ describe('fillCardsArray', () => {
         fillCardsArray(numbers, arrCards);
 
         expect(arrCards.length).toBe(numbers);
-        expect(new Set(arrCards).size).toBe(numbers / 2); 
+        expect(new Set(arrCards).size).toBe(numbers / 2);
     });
 
     it('should generate 72 unique cards when numbers is greater than 72', () => {
         const numbers = 100; // Choose a value greater than 72
         const arrCards: string[] = [];
         fillCardsArray(numbers, arrCards);
-      
+
         expect(arrCards.length).toBe(72);
         expect(new Set(arrCards).size).toBe(72 / 2);
-      });
-      
-      it('should not generate any cards when numbers is 0', () => {
+    });
+
+    it('should not generate any cards when numbers is 0', () => {
         const numbers = 0;
         const arrCards: string[] = [];
         fillCardsArray(numbers, arrCards);
-      
+
         expect(arrCards.length).toBe(0);
-      });
-      
-      it('should not generate any cards when numbers is negative', () => {
+    });
+
+    it('should not generate any cards when numbers is negative', () => {
         const numbers = -10; // Choose a negative value
         const arrCards: string[] = [];
         fillCardsArray(numbers, arrCards);
-      
+
         expect(arrCards.length).toBe(0);
-      });
+    });
 });
