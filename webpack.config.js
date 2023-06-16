@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const isProduction = process.env.NODE_ENV == 'production';
+const isProduction = process.env.NODE_ENV == 'development';
 module.exports = {
     entry: './index.ts',
     mode: isProduction ? 'production' : 'development',
@@ -39,7 +39,7 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js'],
     },
-    
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html',
