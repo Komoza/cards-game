@@ -4,7 +4,8 @@ export let difficulty = 0;
 
 export const DifficultyPage = (app: HTMLElement) => {
     difficulty = 0;
-    app.innerHTML = `
+    if (app)
+        app.innerHTML = `
   <div class="container">
     <div class="difficulty">
       <h2 class="difficulty__text">Выбери сложность</h2>
@@ -33,22 +34,27 @@ export const DifficultyPage = (app: HTMLElement) => {
     const formElement = document.querySelector(
         '.difficulty__form'
     ) as HTMLElement;
-    formElement.addEventListener('submit', (event) => {
-        // Отменяем стандартное поведение формы
-        event.preventDefault();
+    if (formElement)
+        formElement.addEventListener('submit', (event) => {
+            // Отменяем стандартное поведение формы
+            event.preventDefault();
 
-        const radioButtons: HTMLInputElement[] = Array.from(document.querySelectorAll('.difficulty__value input[type="radio"]'));
-        for (let radioButton of radioButtons) {
-            if (radioButton.checked) {
-                difficulty = Number(radioButton.value);
-                goToPage('Game');
-                break;
+            const radioButtons: HTMLInputElement[] = Array.from(
+                document.querySelectorAll(
+                    '.difficulty__value input[type="radio"]'
+                )
+            );
+            for (let radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    difficulty = Number(radioButton.value);
+                    goToPage('Game');
+                    break;
+                }
             }
-        }
-        if (!difficulty) {
-            alert('выберите сложность');
-        }
-    });
+            if (!difficulty) {
+                alert('выберите сложность');
+            }
+        });
 
     // Рисуем видимость выбраного компонента
     const difValues = document.querySelectorAll('.difficulty__value');
