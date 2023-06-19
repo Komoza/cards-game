@@ -4,10 +4,10 @@ const app: HTMLElement = document.getElementById('root')!;
 
 interface Time {
     min: string;
-    sec: string
+    sec: string;
 }
 
-export const EndGame = (isWin: Boolean, time: Time ) => {
+export const EndGame = (isWin: boolean, time: Time) => {
     app.innerHTML += `
         <div class="end">
             <div class="end__wrap">

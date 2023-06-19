@@ -44,7 +44,7 @@ export const DifficultyPage = (app: HTMLElement) => {
                     '.difficulty__value input[type="radio"]'
                 )
             );
-            for (let radioButton of radioButtons) {
+            for (const radioButton of radioButtons) {
                 if (radioButton.checked) {
                     difficulty = Number(radioButton.value);
                     goToPage('Game');

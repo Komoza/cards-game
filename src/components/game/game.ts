@@ -50,7 +50,7 @@ const checkTheWin = () => {
     const cards: HTMLElement[] = Array.from(
         document.querySelectorAll('.game__card')
     );
-    for (let card of cards) {
+    for (const card of cards) {
         if (card.dataset.status !== 'open') {
             return false;
         }
@@ -83,11 +83,11 @@ const checkTheCuple = (firstOpenCard: Card, secondOpenCard: Card) => {
 };
 
 const startGame = () => {
-    let firstOpenCard: Card = {
+    const firstOpenCard: Card = {
         value: '',
         nod: null,
     };
-    let secondOpenCard: Card = {
+    const secondOpenCard: Card = {
         value: '',
         nod: null,
     };
@@ -102,8 +102,8 @@ const startGame = () => {
     const min: HTMLElement = document.querySelector('.timer__counter--min')!;
     const sec: HTMLElement = document.querySelector('.timer__counter--sec')!;
 
-    let second: string = '';
-    let minute: string = '';
+    let second = '';
+    let minute = '';
     setInterval(() => {
         second = (Number(sec.innerHTML) + 1).toString();
         if (Number(second) < 60) {
@@ -157,7 +157,7 @@ export const fillCardsArray = (numbers: number, arrCards: string[]) => {
             )
         );
 
-        let card = `<img data-value="${rank}-of-${suit}" class="game__card" src="./images/card/${rank}-of-${suit}.jpg" alt="card"/>`;
+        const card = `<img data-value="${rank}-of-${suit}" class="game__card" src="./images/card/${rank}-of-${suit}.jpg" alt="card"/>`;
 
         // Поиск пустого случайного слота
         let index = Math.floor(Math.random() * numbers);
