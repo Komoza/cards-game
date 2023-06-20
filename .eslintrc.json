@@ -19,5 +19,6 @@
         "prettier/prettier": "error",
         "camelcase": ["error"],
         "eqeqeq": ["error", "always"]
-    }
+    },
+    "ignorePatterns": ["*.config.*"]
 }

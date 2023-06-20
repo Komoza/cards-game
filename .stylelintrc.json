@@ -1,11 +1,4 @@
 {
-    "extends": [
-        "stylelint-config-standard",
-        "stylelint-config-prettier",
-        "stylelint-prettier/recommended"
-    ],
-    "plugins": ["stylelint-prettier"],
-    "rules": {
-        "media-feature-range-notation": null
-    }
+    "extends": "stylelint-config-standard",
+    "syntax": "scss"
 }
