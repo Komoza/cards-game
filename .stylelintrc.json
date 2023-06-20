@@ -1,4 +1,11 @@
 {
-    "extends": "stylelint-config-standard",
-    "syntax": "scss"
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-sass-guidelines"
+    ],
+
+    "plugins": ["stylelint-scss"],
+    "rules": {
+        "max-nesting-depth": null
+    }
 }
